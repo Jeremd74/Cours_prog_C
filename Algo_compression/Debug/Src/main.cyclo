@@ -1,3 +1,4 @@
 ../Src/main.c:51:10:occurence	3
-../Src/main.c:82:6:creerFeuille	3
-../Src/main.c:108:5:main	1
+../Src/main.c:89:11:creerFeuille	3
+../Src/main.c:121:6:afficherTabArbreHuffman	3
+../Src/main.c:136:5:main	1

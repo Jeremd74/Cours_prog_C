@@ -9,8 +9,8 @@
 #include "timer.h"
 #include "util.h"
 
-	#define DEBUG_UART_OCCURENCE
-#define DEBUG_UART_CREA_FEUILLE
+//#define DEBUG_UART_OCCURENCE
+//#define DEBUG_UART_CREA_FEUILLE
 
 #define TAILLE_MAX_COMPRESS 500
 #define NB_MAX_CARACTERE 256
@@ -84,17 +84,18 @@ uint32_t occurence(uint8_t* chaine, uint32_t tab[NB_MAX_CARACTERE])
  * 
  * @param arbre tableau de l'arbre de Huffman
  * @param tab Tableau d'occurence des caractere
+ * @return uint32_t  nombre de caractere different dans le texte
  */
-void creerFeuille(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t tab[NB_MAX_CARACTERE])
+ uint32_t creerFeuille(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t tab[NB_MAX_CARACTERE])
 {
+	uint32_t ret_nbrCaractereDifferent = 0;
 	uint16_t l_ui8_cptArbre = 0;
 	for(uint16_t iBcl = 0; iBcl < NB_MAX_CARACTERE; iBcl++)
 	{
 		if(tab[iBcl] != 0)
 		{
 			
-			arbre[l_ui8_cptArbre]= malloc(sizeof(arbre[l_ui8_cptArbre]));
-			free(arbre[l_ui8_cptArbre]);
+			arbre[l_ui8_cptArbre] = (struct noeud*)malloc(sizeof(struct noeud));
 			arbre[l_ui8_cptArbre]->c = iBcl;
 			arbre[l_ui8_cptArbre]->occurence = tab[iBcl];
 			arbre[l_ui8_cptArbre]->code = 0;
@@ -105,8 +106,29 @@ void creerFeuille(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t tab[NB_MAX_CAR
 #ifdef DEBUG_UART_CREA_FEUILLE
 			printf("caractere = %c, occurence = %i \n", arbre[l_ui8_cptArbre]->c, arbre[l_ui8_cptArbre]->occurence);
 #endif
-
 			l_ui8_cptArbre++;
+		}
+	}
+	ret_nbrCaractereDifferent = l_ui8_cptArbre;
+
+#ifdef DEBUG_UART_CREA_FEUILLE
+			printf("caractere total different = %i \n", ret_nbrCaractereDifferent);
+#endif
+
+	return ret_nbrCaractereDifferent;
+}
+
+void afficherTabArbreHuffman(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t taille)
+{
+	struct noeud* affiche;
+	for(uint16_t iBcl = 0; iBcl < taille; iBcl++)
+	{
+		if(arbre[iBcl] != NULL)
+		{
+			affiche = arbre[iBcl];
+			printf("caractere = %c, occurence = %i \n", affiche->c, affiche->occurence);
+			printf("code = %i, taille code = %i \n", affiche->code, affiche->tailleCode);
+			printf("adresse a gauche = %#x, a droite = %#x \n\n", affiche->gauche, affiche->droite);
 		}
 	}
 }
@@ -120,11 +142,24 @@ int main(void)
 	GPIO_Init();
 	USART2_Init();
 	SYSTICK_Init();
+
 	printf("\n\r\n\r\n\rStart\n\r");
+
 	nbrCaractereTotal = occurence(texte, tabCaractere);
+	printf("\n");
+	nbrCaractereDifferent = creerFeuille(arbreHuffman, tabCaractere);
+	printf("\n");
+	afficherTabArbreHuffman(arbreHuffman, nbrCaractereDifferent);
 
-	creerFeuille(arbreHuffman, tabCaractere);
-
+	for(uint32_t i = 0; i < nbrCaractereDifferent; i++)
+    {
+        if(arbreHuffman[i] != NULL)
+        {
+            free(arbreHuffman[i]);
+            arbreHuffman[i] = NULL;
+        }
+    }
+	
 	while(1){
 		SYSTICK_Delay(500);
 		GPIOA->ODR ^= 1<<5;
