@@ -24,7 +24,7 @@ struct noeud{
 };
 
 //Texte non compresse
-uint8_t texte[] = "aaaabbbccd";
+uint8_t texte[] = "aaaabbbccd"; //je mange une banane j aime bien les bananes
 
 //Texte compresse
 uint8_t texteCompress[TAILLE_MAX_COMPRESS];
@@ -118,19 +118,47 @@ uint32_t occurence(uint8_t* chaine, uint32_t tab[NB_MAX_CARACTERE])
 	return ret_nbrCaractereDifferent;
 }
 
+/**
+ * @brief Permet d'afficher le contenue de l'arbre
+ * 
+ * @param arbre tableau de l'arbre de Huffman
+ * @param taille Nombre de case dans le tableau de struct
+ */
 void afficherTabArbreHuffman(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t taille)
 {
-	struct noeud* affiche;
 	for(uint16_t iBcl = 0; iBcl < taille; iBcl++)
 	{
 		if(arbre[iBcl] != NULL)
 		{
-			affiche = arbre[iBcl];
-			printf("caractere = %c, occurence = %i \n", affiche->c, affiche->occurence);
-			printf("code = %i, taille code = %i \n", affiche->code, affiche->tailleCode);
-			printf("adresse a gauche = %#x, a droite = %#x \n\n", affiche->gauche, affiche->droite);
+			printf("caractere = %c, occurence = %i \n", arbre[iBcl]->c, arbre[iBcl]->occurence);
+			printf("code = %i, taille code = %i \n", arbre[iBcl]->code, arbre[iBcl]->tailleCode);
+			printf("adresse a gauche = %#x, a droite = %#x \n\n", arbre[iBcl]->gauche, arbre[iBcl]->droite);
 		}
 	}
+}
+
+/**
+ * @brief trie pas ordre croissant les occurances des caracteres
+ * 
+ * @param arbre tableau de l'arbre de Huffman
+ * @param taille Nombre de case dans le tableau de struct
+ */
+void triArbre(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t taille)
+{
+	struct noeud* arbre_tempo;
+    for (uint16_t iBcl1 = 0; iBcl1 < taille - 1; iBcl1++) 
+	{
+        for (uint16_t iBcl2 = 0; iBcl2 < taille - iBcl1 - 1; iBcl2++) 
+		{
+            if (arbre[iBcl2]->occurence > arbre[iBcl2 + 1]->occurence) 
+			{
+                // Échange des éléments
+                arbre_tempo = arbre[iBcl2];
+                arbre[iBcl2] = arbre[iBcl2 + 1];
+                arbre[iBcl2 + 1] = arbre_tempo;
+            }
+        }
+    }
 }
 
 int main(void)
@@ -146,9 +174,16 @@ int main(void)
 	printf("\n\r\n\r\n\rStart\n\r");
 
 	nbrCaractereTotal = occurence(texte, tabCaractere);
+
 	printf("\n");
 	nbrCaractereDifferent = creerFeuille(arbreHuffman, tabCaractere);
-	printf("\n");
+
+	printf("Affichage\n");
+	afficherTabArbreHuffman(arbreHuffman, nbrCaractereDifferent);
+
+	triArbre(arbreHuffman, nbrCaractereDifferent);
+
+	printf("Affichge apres tri\n");
 	afficherTabArbreHuffman(arbreHuffman, nbrCaractereDifferent);
 
 	for(uint32_t i = 0; i < nbrCaractereDifferent; i++)
@@ -159,7 +194,7 @@ int main(void)
             arbreHuffman[i] = NULL;
         }
     }
-	
+
 	while(1){
 		SYSTICK_Delay(500);
 		GPIOA->ODR ^= 1<<5;
