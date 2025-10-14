@@ -1,0 +1,17 @@
+10:14:42 **** Incremental Build of configuration Debug for project Algo_compression ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -c -I"C:/Users/Jerem/Documents/GitHub/Cours_prog_C/Algo_compression/Inc" -I"C:/Users/Jerem/Documents/GitHub/Cours_prog_C/Algo_compression/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Jerem/Documents/GitHub/Cours_prog_C/Algo_compression/Drivers/CMSIS/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Algo_compression.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Jerem\Documents\GitHub\Cours_prog_C\Algo_compression\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Algo_compression.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Algo_compression.elf
+ 
+arm-none-eabi-size  Algo_compression.elf 
+arm-none-eabi-objdump -h -S Algo_compression.elf  > "Algo_compression.list"
+   text	   data	    bss	    dec	    hex	filename
+   4060	     96	   1904	   6060	   17ac	Algo_compression.elf
+Finished building: default.size.stdout
+ 
+Finished building: Algo_compression.list
+ 
+
+10:14:43 Build Finished. 0 errors, 0 warnings. (took 828ms)
+

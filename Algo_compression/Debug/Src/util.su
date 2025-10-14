@@ -1,0 +1,4 @@
+../Src/util.c:9:5:__io_putchar	16	static
+../Src/util.c:15:5:__io_getchar	8	static
+../Src/util.c:20:6:SCANF_Init	8	static
+../Src/util.c:24:6:FPU_Init	4	static
