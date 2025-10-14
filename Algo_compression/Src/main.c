@@ -12,6 +12,14 @@
 
 #define TAILLE_MAX_COMPRESS 500
 
+struct noeud{
+	uint8_t c; 						//Caractere initial
+	uint32_t occurence;				//Nombre d'occurence
+	uint32_t code;					//Code binaire dans l'arbre
+	uint32_t tailleCode;			//Nombre de bits dans le code
+	struct noeud *gauche, *droite;	//Liens vers les noeuds suivants
+}
+
 //Texte non compresse
 uint8_t texte[] = "aaaabbbccd";
 
@@ -28,7 +36,7 @@ uint32_t nbrCaractereTotal = 0;
 uint32_t nbrCaractereDifferent = 0;
 
 //Arbre de Huffman
-//struct noeud* arbreHuffman[256];
+struct noeud* arbreHuffman[256];
 
 /**
  * @brief
