@@ -1,5 +1,6 @@
-../Src/main.c:51:10:occurence	3
-../Src/main.c:89:11:creerFeuille	3
-../Src/main.c:127:6:afficherTabArbreHuffman	3
-../Src/main.c:140:6:triArbre	4
-../Src/main.c:158:5:main	3
+../Src/main.c:52:10:occurence	3
+../Src/main.c:90:11:creerFeuille	3
+../Src/main.c:128:6:afficherTabArbreHuffman	3
+../Src/main.c:147:6:triArbre	4
+../Src/main.c:165:6:creationNoeud	2
+../Src/main.c:188:5:main	3

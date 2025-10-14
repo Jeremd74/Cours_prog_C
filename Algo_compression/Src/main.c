@@ -40,6 +40,7 @@ uint32_t nbrCaractereDifferent = 0;
 
 //Arbre de Huffman
 struct noeud* arbreHuffman[NB_MAX_CARACTERE];
+struct noeud* racineHuffman;
 
 /**
  * @brief compte le nombre total de caractere differents et compte le nombre d'occurence de chaque caractere
@@ -161,6 +162,29 @@ void triArbre(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t taille)
     }
 }
 
+void creationNoeud(struct noeud* arbre[NB_MAX_CARACTERE], struct noeud* racine, uint32_t taille)
+{
+	for (uint16_t iBcl = 0; iBcl < taille-1; iBcl++)
+	{
+		struct noeud* noeud = (struct noeud*)malloc(sizeof(struct noeud));
+		noeud->c = '!';
+		noeud->occurence = arbre[iBcl-1]->occurence + arbre[iBcl]->occurence;
+		noeud->code = 0;
+		noeud->tailleCode = 0;
+		noeud->gauche = arbre[iBcl];
+		noeud->droite = arbre[iBcl+1];
+
+		arbre[iBcl+1] = noeud;
+    }
+	racine = (struct noeud*)malloc(sizeof(struct noeud));
+	racine->c = '!';
+	racine->occurence = arbre[taille-1]->occurence + arbre[taille]->occurence;
+	racine->code = 0;
+	racine->tailleCode = 0;
+	racine->gauche = arbre[taille-1];
+	racine->droite = arbre[taille];
+}
+
 int main(void)
 {
 	//HAL_Init();
@@ -184,6 +208,11 @@ int main(void)
 	triArbre(arbreHuffman, nbrCaractereDifferent);
 
 	printf("Affichge apres tri\n");
+	afficherTabArbreHuffman(arbreHuffman, nbrCaractereDifferent);
+
+	creationNoeud(arbreHuffman, racineHuffman, nbrCaractereDifferent);
+
+	printf("Affichge apres noeud\n");
 	afficherTabArbreHuffman(arbreHuffman, nbrCaractereDifferent);
 
 	for(uint32_t i = 0; i < nbrCaractereDifferent; i++)
