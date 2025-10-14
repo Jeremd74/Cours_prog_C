@@ -457,3 +457,4 @@
 2025-10-14 10:05:46,883 [INFO] McuFinderGlobals:76 - Set McuFinderConnectedMode to true
 2025-10-14 10:05:46,890 [INFO] ApiDb:448 - Save user favorites file C:\Users\Jerem/.stm32cubeide/favorites.mcus.txt: 0 item(s)
 2025-10-14 10:05:46,890 [INFO] ApiDb:452 - User favorites MCUs=[]
+2025-10-14 10:16:04,895 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
