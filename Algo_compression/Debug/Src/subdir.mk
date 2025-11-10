@@ -8,6 +8,7 @@ C_SRCS += \
 ../Src/gpio.c \
 ../Src/interrupt.c \
 ../Src/main.c \
+../Src/myFunction.c \
 ../Src/syscalls.c \
 ../Src/sysmem.c \
 ../Src/timer.c \
@@ -18,6 +19,7 @@ OBJS += \
 ./Src/gpio.o \
 ./Src/interrupt.o \
 ./Src/main.o \
+./Src/myFunction.o \
 ./Src/syscalls.o \
 ./Src/sysmem.o \
 ./Src/timer.o \
@@ -28,6 +30,7 @@ C_DEPS += \
 ./Src/gpio.d \
 ./Src/interrupt.d \
 ./Src/main.d \
+./Src/myFunction.d \
 ./Src/syscalls.d \
 ./Src/sysmem.d \
 ./Src/timer.d \
@@ -42,7 +45,7 @@ Src/%.o Src/%.su Src/%.cyclo: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/gpio.cyclo ./Src/gpio.d ./Src/gpio.o ./Src/gpio.su ./Src/interrupt.cyclo ./Src/interrupt.d ./Src/interrupt.o ./Src/interrupt.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/timer.cyclo ./Src/timer.d ./Src/timer.o ./Src/timer.su ./Src/usart.cyclo ./Src/usart.d ./Src/usart.o ./Src/usart.su ./Src/util.cyclo ./Src/util.d ./Src/util.o ./Src/util.su
+	-$(RM) ./Src/gpio.cyclo ./Src/gpio.d ./Src/gpio.o ./Src/gpio.su ./Src/interrupt.cyclo ./Src/interrupt.d ./Src/interrupt.o ./Src/interrupt.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/myFunction.cyclo ./Src/myFunction.d ./Src/myFunction.o ./Src/myFunction.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/timer.cyclo ./Src/timer.d ./Src/timer.o ./Src/timer.su ./Src/usart.cyclo ./Src/usart.d ./Src/usart.o ./Src/usart.su ./Src/util.cyclo ./Src/util.d ./Src/util.o ./Src/util.su
 
 .PHONY: clean-Src
 

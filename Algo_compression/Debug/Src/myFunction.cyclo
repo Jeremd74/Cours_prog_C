@@ -1,0 +1,5 @@
+../Src/myFunction.c:22:10:occurence	3
+../Src/myFunction.c:52:10:creerFeuille	3
+../Src/myFunction.c:83:6:afficherTabArbreHuffman	3
+../Src/myFunction.c:96:6:triArbre	4
+../Src/myFunction.c:113:6:creationNoeud	2

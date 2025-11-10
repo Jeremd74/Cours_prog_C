@@ -1,6 +1,7 @@
 "./Src/gpio.o"
 "./Src/interrupt.o"
 "./Src/main.o"
+"./Src/myFunction.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"
 "./Src/timer.o"
