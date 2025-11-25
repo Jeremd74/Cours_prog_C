@@ -31,7 +31,7 @@ int main(void)
 	nbrCaractereDifferent = creerFeuille(arbreHuffman, tabCaractere);
 
 	#ifdef DEBUG_UART_AFFICHE_ARBRE
-	printf("<----------------Affichage---------------->\n");
+	printf("\n<----------------Affichage---------------->\n");
 	afficherTabArbreHuffman(arbreHuffman, nbrCaractereDifferent);
 	#endif
 
@@ -54,8 +54,13 @@ int main(void)
 	parcourirArbre(racineHuffman);
 	#endif
 
-	printf("<----------------Creation du code---------------->\n");
+	printf("\n<----------------Creation du code---------------->\n");
 	creerCode(racineHuffman, codeHuffman, nbrCaractereDifferent);
+
+	printf("\n<----------------Get Address---------------->\n");
+	struct noeud* Add_lue = getAddress(arbreHuffman, 'c');
+	
+	afficherTabArbreHuffman(Add_lue, 1);
 
 	/*
 	for(uint32_t i = 0; i < nbrCaractereDifferent; i++)

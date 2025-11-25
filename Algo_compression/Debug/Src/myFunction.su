@@ -5,3 +5,4 @@
 ../Src/myFunction.c:113:6:creationNoeud	24	static
 ../Src/myFunction.c:129:6:parcourirArbre	16	static
 ../Src/myFunction.c:142:6:creerCode	32	static
+../Src/myFunction.c:172:15:getAddress	24	static

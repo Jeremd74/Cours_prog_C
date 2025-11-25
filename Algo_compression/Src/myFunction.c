@@ -168,3 +168,27 @@ void creerCode(struct noeud* noeud, uint32_t code, uint32_t taille){
 	if(noeud->droite != NULL)
 	creerCode(noeud->droite, (code << 1) | 1, taille + 1);
 }
+
+struct noeud* getAddress(struct noeud* ptrNoeud, uint8_t caractere){
+	struct noeud* ret_add;
+	if(ptrNoeud == NULL)
+		return NULL;
+
+	if(ptrNoeud ->droite==NULL && ptrNoeud ->gauche==NULL)
+	{
+		if(ptrNoeud ->c== caractere)
+		{
+			return ptrNoeud;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+	else
+	{
+		ret_add = getAddress(ptrNoeud ->gauche, caractere); // On va a gauche
+		ret_add = getAddress(ptrNoeud ->droite, caractere); // On va a droite
+	}
+	return ret_add;
+}

@@ -5,8 +5,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-//#define DEBUG_UART_OCCURENCE
-//#define DEBUG_UART_CREA_FEUILLE
+#define DEBUG_UART_OCCURENCE
+#define DEBUG_UART_CREA_FEUILLE
 #define DEBUG_UART_AFFICHE_ARBRE
 #define DEBUG_UART_AFFICHE_TRI
 #define DEBUG_UART_AFFICHE_NOEUD
@@ -103,4 +103,12 @@ void afficherTabArbreHuffman(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t tai
  */
  void creerCode(struct noeud* noeud, uint32_t code, uint32_t taille);
 
+ /**
+  * @brief Get the Address object
+  * 
+  * @param ptrNoeud 
+  * @param caractere 
+  * @return struct noeud* 
+  */
+ struct noeud* getAddress(struct noeud* ptrNoeud, uint8_t caractere);
 #endif // myFunction_h
