@@ -110,26 +110,31 @@ void triArbre(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t taille){
     }
 }
 
-void creationNoeud(struct noeud* arbre[NB_MAX_CARACTERE], struct noeud* racine, uint32_t taille){
-	for (uint16_t iBcl = 0; iBcl < taille-1; iBcl++)
+void creationNoeud(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t taille){
+	for (uint16_t iBcl = 1; iBcl < taille; iBcl++)
 	{
 		struct noeud* newNoeud = (struct noeud*)malloc(sizeof(struct noeud));
 		newNoeud->c = '!';
-		newNoeud->occurence = arbre[iBcl]->occurence + arbre[iBcl + 1]->occurence;
+		newNoeud->occurence = arbre[iBcl-1]->occurence + arbre[iBcl]->occurence;
 		newNoeud->code = 0;
 		newNoeud->tailleCode = 0;
-		newNoeud->gauche = arbre[iBcl];
-		newNoeud->droite = arbre[iBcl+1];
+		newNoeud->gauche = arbre[iBcl-1];
+		newNoeud->droite = arbre[iBcl];
 
-		arbre[iBcl+1] = newNoeud;
+		arbre[iBcl] = newNoeud;
     }
-	racine = (struct noeud*)malloc(sizeof(struct noeud));
-	racine->c = '!';
-	racine->occurence = arbre[taille-1]->occurence + arbre[taille]->occurence;
-	racine->code = 0;
-	racine->tailleCode = 0;
-	racine->gauche = arbre[taille-1];
-	racine->droite = arbre[taille];
+	racineHuffman = arbre[taille-1];
+}
 
-    arbre[taille] = racine;
+void parcourirArbre(struct noeud* ptrNoeud){
+	if(ptrNoeud ->droite==NULL && ptrNoeud ->gauche==NULL)
+	{
+	printf("Je suis une feuille\r\n");
+	}
+	else
+	{
+	printf("Je suis un noeud\r\n");
+	parcourirArbre(ptrNoeud ->gauche); // On va a gauche
+	parcourirArbre(ptrNoeud ->droite); // On va a droite
+	}
 }

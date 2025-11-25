@@ -73,6 +73,21 @@ void afficherTabArbreHuffman(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t tai
  */
  void triArbre(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t taille);
 
- void creationNoeud(struct noeud* arbre[NB_MAX_CARACTERE], struct noeud* racine, uint32_t taille);
+ /**
+  * @brief parcour l'arbre et ajoute les feuilles et les noeud dans droite et gauche de l'arbre
+  * 
+  * @param arbre tableau de l'arbre de Huffman
+  * @param racine structure avec tous les info de la racine (sommet des noeuds)
+  * @param taille Nombre de case dans le tableau de struct
+  */
+ void creationNoeud(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t taille);
+
+
+ /**
+  * @brief 
+  * 
+  * @param ptrNoeud 
+  */
+ void parcourirArbre(struct noeud* ptrNoeud);
 
 #endif // myFunction_h

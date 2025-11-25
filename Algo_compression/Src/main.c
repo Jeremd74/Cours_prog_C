@@ -35,13 +35,13 @@ int main(void)
 	printf("<----------------Affichge apres tri---------------->\n");
 	afficherTabArbreHuffman(arbreHuffman, nbrCaractereDifferent);
 
-	creationNoeud(arbreHuffman, racineHuffman, nbrCaractereDifferent);
+	creationNoeud(arbreHuffman, nbrCaractereDifferent);
 
 	printf("<----------------Affichge apres noeud---------------->\n");
 	afficherTabArbreHuffman(arbreHuffman, nbrCaractereDifferent);
 
-	printf("adresse = %#x\n\n", &arbreHuffman[nbrCaractereDifferent-1]);
-	printf("adresse = %#x\n\n", racineHuffman);
+	printf("<----------------Affichge parcoursArbre---------------->\n");
+	parcourirArbre(racineHuffman);
 
 	/*
 	for(uint32_t i = 0; i < nbrCaractereDifferent; i++)

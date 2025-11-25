@@ -2,4 +2,5 @@
 ../Src/myFunction.c:52:10:creerFeuille	32	static
 ../Src/myFunction.c:83:6:afficherTabArbreHuffman	24	static
 ../Src/myFunction.c:96:6:triArbre	24	static
-../Src/myFunction.c:113:6:creationNoeud	32	static
+../Src/myFunction.c:113:6:creationNoeud	24	static
+../Src/myFunction.c:129:6:parcourirArbre	16	static
