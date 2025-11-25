@@ -12,6 +12,9 @@
 
 int main(void)
 {
+
+	uint32_t codeHuffman = 0;
+
 	//HAL_Init();
 	//SystemClock_Config();
 
@@ -27,21 +30,32 @@ int main(void)
 	printf("\n");
 	nbrCaractereDifferent = creerFeuille(arbreHuffman, tabCaractere);
 
+	#ifdef DEBUG_UART_AFFICHE_ARBRE
 	printf("<----------------Affichage---------------->\n");
 	afficherTabArbreHuffman(arbreHuffman, nbrCaractereDifferent);
+	#endif
 
 	triArbre(arbreHuffman, nbrCaractereDifferent);
 
+	#ifdef DEBUG_UART_AFFICHE_TRI
 	printf("<----------------Affichge apres tri---------------->\n");
 	afficherTabArbreHuffman(arbreHuffman, nbrCaractereDifferent);
+	#endif
 
 	creationNoeud(arbreHuffman, nbrCaractereDifferent);
 
+	#ifdef DEBUG_UART_AFFICHE_NOEUD
 	printf("<----------------Affichge apres noeud---------------->\n");
 	afficherTabArbreHuffman(arbreHuffman, nbrCaractereDifferent);
+	#endif
 
+	#ifdef DEBUG_UART_PARCOUR_ARBRE
 	printf("<----------------Affichge parcoursArbre---------------->\n");
 	parcourirArbre(racineHuffman);
+	#endif
+
+	printf("<----------------Creation du code---------------->\n");
+	creerCode(racineHuffman, codeHuffman, nbrCaractereDifferent);
 
 	/*
 	for(uint32_t i = 0; i < nbrCaractereDifferent; i++)

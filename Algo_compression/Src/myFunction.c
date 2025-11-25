@@ -138,3 +138,33 @@ void parcourirArbre(struct noeud* ptrNoeud){
 	parcourirArbre(ptrNoeud ->droite); // On va a droite
 	}
 }
+
+void creerCode(struct noeud* noeud, uint32_t code, uint32_t taille){
+	if(noeud == NULL)
+		return;
+
+	// Si c'est une feuille (pas de fils gauche et droit)
+	if(noeud->gauche == NULL && noeud->droite == NULL)
+	{
+		noeud->code = code;
+		noeud->tailleCode = taille;
+		
+		#ifdef DEBUG_UART_CODES
+		printf("Caractere '%c' : Code = ", noeud->c);
+		for(int i = taille - 1; i >= 0; i--)
+		{
+			printf("%i", (code >> i) & 1);
+		}
+		printf(" (taille: %lu bits)\n", taille);
+		#endif
+		
+		return;
+	}
+	
+	// Parcours récursif : gauche = 0, droite = 1
+	if(noeud->gauche != NULL)
+		creerCode(noeud->gauche, code << 1, taille + 1);
+	
+	if(noeud->droite != NULL)
+	creerCode(noeud->droite, (code << 1) | 1, taille + 1);
+}

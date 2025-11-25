@@ -7,6 +7,11 @@
 
 //#define DEBUG_UART_OCCURENCE
 //#define DEBUG_UART_CREA_FEUILLE
+#define DEBUG_UART_AFFICHE_ARBRE
+#define DEBUG_UART_AFFICHE_TRI
+#define DEBUG_UART_AFFICHE_NOEUD
+#define DEBUG_UART_PARCOUR_ARBRE
+#define DEBUG_UART_CODES
 
 #define TAILLE_MAX_COMPRESS 500
 #define NB_MAX_CARACTERE 256
@@ -89,5 +94,13 @@ void afficherTabArbreHuffman(struct noeud* arbre[NB_MAX_CARACTERE], uint32_t tai
   * @param ptrNoeud 
   */
  void parcourirArbre(struct noeud* ptrNoeud);
+
+ /**
+ * @brief Génère les codes binaires pour chaque caractère de l'arbre
+ * @param noeud Noeud courant de l'arbre
+ * @param code Code binaire en cours de construction
+ * @param profondeur Profondeur actuelle dans l'arbre
+ */
+ void creerCode(struct noeud* noeud, uint32_t code, uint32_t taille);
 
 #endif // myFunction_h
